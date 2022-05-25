@@ -1,13 +1,13 @@
 <template>
   <div>
-     Login
+        <h2>Message</h2>
+        <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-    name:'LoginApp',
-
+    name:'MessageApp'
 }
 </script>
 
