@@ -13,7 +13,7 @@ export default new VueRouter({
         {
             path:'/',
             component:Home,
-             directives:'/index',
+             directives:'/Login',
          
         },
         {

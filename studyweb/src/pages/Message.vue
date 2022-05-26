@@ -80,5 +80,6 @@ export default {
 .messageDate{
   /* color: rgb(187, 33, 33); */
   padding-left: 9px;
+  padding-right: 2px;
 }
 </style>
