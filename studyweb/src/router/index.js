@@ -2,23 +2,30 @@
 import VueRouter from 'vue-router'
 //引入组件
 import Login from '../pages/Login.vue'
-import BannerBar from '../components/BannerBar.vue'
+// import Index from '../components/BannerBar.vue'
 import Home from '../pages/Home.vue'
 import Message from '../pages/Message.vue'
 import News from '../pages/News.vue'
+import Article from '../pages/Article.vue'
 //创建并暴露一个路由器
 export default new VueRouter({
     routes:[
         {
+            path:'/',
+            component:Home,
+             directives:'/index',
+         
+        },
+        {
             path:'/index',
-            component:BannerBar,
-            children:[
-                {
-                    path:'Home',
-                    component:Home,
-            },
-            {
-                path:'Message',
+            component:Home,
+        },
+        {
+            path:'/Login',
+            component:Login
+        },
+        {
+            path:'/Message',
                 component:Message,
                 children:[
                     {
@@ -33,12 +40,11 @@ export default new VueRouter({
                         } */
                     }
                 ]
-            }
-        ]
         },
         {
-            path:'/Login',
-            component:Login
+            path:'/Article',
+            component:Article
         },
+
     ]
 })

@@ -3,6 +3,7 @@
       <el-container>
       <el-row>
         <el-col :span='24'>登陆界面</el-col>
+        <roter-view></roter-view>
       </el-row>
       </el-container>
   </div>

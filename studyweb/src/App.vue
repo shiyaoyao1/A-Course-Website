@@ -7,16 +7,20 @@
     <!-- <router-link class="demo" to='/Footer'>Footer</router-link> -->
     <!-- <BannerBar /> -->
     <!-- 指定组件的呈现位置 -->
-    <router-view></router-view>
+    <el-containner>
+      <Index />
+      <router-view></router-view>
+      <Footer />
+    </el-containner>
     
   </div>
 </template>
 
 <script>
-// import BannerBar from './components/BannerBar.vue'
+import Index from './components/BannerBar.vue'
 
 // import LoginApp from './components/LoginApp.vue'
-// import FooterApp from './components/FooterApp.vue'
+import Footer from './pages/Footer.vue'
 
 export default {
   name: 'App',
@@ -24,7 +28,14 @@ export default {
     // BannerBar
     // LoginApp,
     // FooterApp,
-  }
+    Footer,
+    Index
+  },
+  /* mounted() {
+    this.$router.push({
+      path:'/index/Home'
+    })
+  }, */
 }
 </script>
 
@@ -35,7 +46,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: -8px;
+  padding: 0%;
 }
 
 </style>
