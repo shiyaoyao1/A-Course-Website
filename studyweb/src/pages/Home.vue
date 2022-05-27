@@ -18,7 +18,7 @@
     <el-row>
       <el-col :span='4'>学习目标</el-col>
       <el-col :span='8'><div>
-        123
+        
         </div></el-col>
     </el-row>
   </el-main>
