@@ -1,8 +1,12 @@
 <template>
   <el-footer>
-    <el-row :span='24'>
-      Footer内容
+    <div>
+    <el-row >
+      <el-col :span='24'>
+        Footer内容
+      </el-col>
     </el-row>
+    </div>
   </el-footer>
 </template>
 
@@ -18,5 +22,6 @@ export default {
   padding-top: 6em;
   padding-bottom: 8em;
   background-color: rgb(185, 185, 185);
+  margin-top: 600px;
 }
 </style>

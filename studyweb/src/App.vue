@@ -7,18 +7,19 @@
     <!-- <router-link class="demo" to='/Footer'>Footer</router-link> -->
     <!-- <BannerBar /> -->
     <!-- 指定组件的呈现位置 -->
-    <el-containner>
-      <Index />
+    <el-container direction="vertical">
+      <Header />
       <router-view></router-view>
+      
       <Footer />
-    </el-containner>
+    </el-container>
     
   </div>
 </template>
 
 <script>
-import Index from './components/BannerBar.vue'
-
+// import Index from './components/BannerBar.vue'
+import Header from './pages/Header.vue'
 // import LoginApp from './components/LoginApp.vue'
 import Footer from './pages/Footer.vue'
 
@@ -29,7 +30,7 @@ export default {
     // LoginApp,
     // FooterApp,
     Footer,
-    Index
+    Header
   },
   /* mounted() {
     this.$router.push({
