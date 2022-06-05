@@ -16,11 +16,53 @@
       <el-col :span='7' push='5'><img src="../assets/home1.jpeg" alt="图片走丢了" class='homeIntroducePic'></el-col>
     </el-row>
     <el-row>
-      <el-col :span='4'>学习目标</el-col>
-      <el-col :span='8'><div>
-        
+      <el-col :span='4' push='3' class='studyTargetText'>学习目标</el-col>
+      <el-col :span='10' push='4'><div>
+        <ul class="studyTargetTextContent">
+          <li>Designing molecular switches, enzymes, and motors</li>
+          <li>Designing delivery vehicles for targeted intracellular delivery of biologics</li>
+          <li>Designing high-affinity binders to arbitrary small molecule and protein targets</li>
+          <li>Designing membrane-permeable macrocyclic peptide therapeutics</li>
+          <li>Generating novel hybrid materials through designed biomineralization</li>
+          <li>Deep learning for protein structure refinement and protein design</li>
+        </ul>
         </div></el-col>
     </el-row>
+    <el-row>
+      <el-col span='11' push='8'>
+        <el-divider></el-divider>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col span='4' push='3' class='LatestNews'>最新内容</el-col>
+    </el-row>
+    <el-row class='latestNewsCard'>
+  <el-col :span="5" push='4' class="latestNewsCard" v-for="(o, index) in 3" :key="o" :offset="index > 0 ? 2 : 0">
+    <el-card :body-style="{ padding: '0px' }" class="homeLatestNewsCard">
+      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+      <div style="padding: 0px;">
+        <span>{{homeLatestNews[0].title}}</span>
+        <div class="bottom clearfix">
+          <time class="time">{{ homeLatestNews[0].date }}</time>
+        
+        </div>
+      </div>
+    </el-card>
+  </el-col>
+</el-row>
+<el-row class='latestNewsCard'>
+  <el-col :span="5" push='4' class="latestNewsCard" v-for="(o, index) in 3" :key="o" :offset="index > 0 ? 2 : 0">
+    <el-card :body-style="{ padding: '0px' }" class="homeLatestNewsCard">
+      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+      <div style="padding: 0px;">
+        <span>{{homeLatestNews[0].title}}</span>
+        <div class="bottom clearfix">
+          <time class="time">{{ homeLatestNews[0].date }}</time>
+        </div>
+      </div>
+    </el-card>
+  </el-col>
+</el-row>
   </el-main>
   
 
@@ -34,7 +76,19 @@ export default {
     components:{
       // Index,
     
-    }
+    },
+    data() {
+      return {
+        homeLatestNews:[
+          {
+            title:'Custom biosensors for detecting coronavirus antibodies in blood	',
+            date:'五月28日,2022',
+            linkUrl:''
+            }
+        ]
+      }
+    },
+
 }
 </script>
 
@@ -45,7 +99,7 @@ export default {
 .welcomeText{
   line-height: 1.4;
   padding-top: 12px;
-  font-size: 27px;
+  font-size: 30px;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: bold;
     line-height: 1;
@@ -75,5 +129,59 @@ export default {
   margin-top: 30px;
   
 }
+.studyTargetText{
+  line-height: 1.4;
+  padding-top: 60px;
+  font-size: 30px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    line-height:1.5 
+}
+.studyTargetTextContent{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  padding-right: 1em;
+  line-height: 1.4;
+  /* text-indent:2em; */
+  text-align:justify;
+  /* text-justify:inter-ideograph; */
+  margin-bottom: 18px;
+  margin-top: 48px;
+}
+.LatestNews{
+   line-height: 1.4;
+  padding-top: 55px;
+  font-size: 30px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    line-height:1.5 
+}
+.homeLatestNewsCard{
+  padding: 0px;
+  display: block;
+  float: left;
+
+}
+.clearfix:before,
+  .clearfix:after {
+      display: table;
+      content: "";
+  }
+  
+  .clearfix:after {
+      clear: both
+  }
+  .latestNewsCard{
+    margin-left: 0px;
+    margin-right: 50px;
+    margin-bottom: 26px;
+    margin-top: 4px;
+  }
 
 </style>

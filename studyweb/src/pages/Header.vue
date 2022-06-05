@@ -5,7 +5,7 @@
   <el-col :span="4" :offset="4"><div class="grid-content bg-purple headerLogo">生物医学数据库</div>
   </el-col>
   <el-col :span="6" push='6'><div class="grid-content bg-purple headerSearch">
-    <el-input v-model="input" placeholder="请输入搜索内容"></el-input>
+    <el-input v-model="input" size="small" class="headerSearchInput" placeholder="请输入搜索内容"></el-input>
   </div>
   </el-col>
 </el-row>
@@ -64,10 +64,14 @@ export default {
   text-transform: uppercase;
 }
 .headerSearch{
-  padding-top: 41px;
+  padding-top: 52px;
   padding-right: 14px;
-  padding-left: 180px;
+  padding-left: 188px;
 }
+.headerSearchInput{
+  padding-left: 14px;
+}
+.headerSearchInput
  .el-select .el-input {
     width: 130px;
   }
