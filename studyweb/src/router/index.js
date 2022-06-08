@@ -7,6 +7,7 @@ import Home from '../pages/Home.vue'
 import Message from '../pages/Message.vue'
 import News from '../pages/News.vue'
 import Article from '../pages/Article.vue'
+import ArticleContent from '../pages/ArticleContent.vue'
 //创建并暴露一个路由器
 const router = new VueRouter({
     mode:'hash',
@@ -19,16 +20,19 @@ const router = new VueRouter({
          
         },
         {
+            name:'index',
             path:'/index',
             component:Home,
             meta:{title:'主页'},
         },
         {
+            name:'Login',
             path:'/Login',
             component:Login,
             meta:{title:'登录'},
         },
         {
+            name:'Message',
             path:'/Message',
             component:Message,
             meta:{isAuth:true,title:'消息'},
@@ -47,9 +51,22 @@ const router = new VueRouter({
             ]
         },
         {
+            name:'Article',
             path:'/Article',
-            component:Article
+            component:Article,
         },
+        {
+            name:'ArticleContent',
+            path:'ArticleContent',
+            component:ArticleContent,
+            //props第三种写法，值为函数 这里用了连续解构赋值
+                    /* props({query}){
+                        return {
+                            id:query.id,
+                            title:query.title
+                        }
+                    } */
+        }
 
     ]
 })

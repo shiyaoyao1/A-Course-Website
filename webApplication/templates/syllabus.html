@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BioDatabase</title>
+<link rel="stylesheet" type="text/css" href="../static/css/syllabus.css">
+</head>
+<body>
+    <div class="header">
+        <h1>生物医学数据库课程网</h1>
+      </div>
+      
+      <div class="topnav">
+        <a href={{url_for('index')}}>首页</a>
+        <a href={{url_for('showSyllabus')}}>大纲</a>
+        <a href="#">讲义</a>
+        <a class="about" href="#" >关于</a>
+      </div>
+
+      <div class="row">
+          <div class="leftcolumn">
+              <div class="card">
+                  <h2>教学大纲下载</h2>
+              </div>
+          </div>
+          <div class="rightcolumn">
+            {% for file in files %}
+              <div class="card">
+                <a href="../upload/{{file.filename}}">{{file.filename}}</a>
+              </div>
+            {% endfor %}
+          </div>
+      </div>
+      <div class="footer">
+        <h2>期待明年再见</h2>
+        <p>生物医学数据库是以一门以生物学数据为基础的学科，采用Flask等网站开发技术，促使学生理解并掌握生物学的数据库构建方法</p>
+    </div>
+</body>
+</html>

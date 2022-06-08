@@ -37,6 +37,7 @@ export default {
       path:'/index/Home'
     })
   }, */
+  
 }
 </script>
 

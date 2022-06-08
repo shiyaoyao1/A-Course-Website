@@ -7,10 +7,10 @@
     <span class='aricleListTitleList'><span class='editIcon'><i class="el-icon-tickets"></i></span> 文章列表</span>
     <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
   </div>
-  <el-link target="_blank" :underline="false"  class='articleListTitle' v-for='(item) in messageList' :key='item.id'>
+  <el-link   :underline="false"  class='articleListTitle' v-for='(item) in messageList' :key='item.id'>
       <el-row type='flex' justify="start">
           <el-col :span='24' >
-              {{item.messageTitle}} <span >{{item.messageDate}}</span>
+              <a @click='pushToArticleContent(item)'>{{item.messageTitle}} <span >{{item.messageDate}}</span></a>
               <el-divider class='articleListLine'></el-divider>
           </el-col>
       </el-row>
@@ -60,6 +60,18 @@ export default {
         },
         ],
       }
+    },
+    methods: {
+        //跳转并且是push模式
+        pushToArticleContent(item){
+            // console.log(this.$router)
+            this.$router.push({
+                name:'ArticleContent',
+                query:{
+                    id:item.id,
+                }
+            })
+        }
     },
     
 }

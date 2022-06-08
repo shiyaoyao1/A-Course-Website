@@ -8,13 +8,19 @@ import Vue from 'vue'
 Vue.use(Vuex);
 
 //创建actions,用于响应组件中的动作 传入两个参数(context,value)
-const actions = {}
+const actions = {
+    
+}
 
 //创建mutations,用于操作数据 传入两个参数(state,value)
-const mutations = {}
+const mutations = {
+
+}
 
 //创建state,用于存储数据
-const state = {}
+const state = {
+
+}
 
 //可选属性getters0
 /* const getters ={
