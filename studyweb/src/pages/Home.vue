@@ -38,31 +38,40 @@
     </el-row>
     <el-row class='latestNewsCard'>
   <el-col :span="5" push='4' class="latestNewsCard" v-for="(o, index) in 3" :key="o" :offset="index > 0 ? 2 : 0">
-    <el-card :body-style="{ padding: '0px' }" class="homeLatestNewsCard">
-      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+    <el-card shadow="hover" :body-style="{ padding: '0px' }" class="homeLatestNewsCard">
+      <router-link :to="{ path: '/index' }"><img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image"></router-link>
+      <!-- 第一行 -->
       <div style="padding: 0px;">
-        <span>{{homeLatestNews[0].title}}</span>
-        <div class="bottom clearfix">
-          <time class="time">{{ homeLatestNews[0].date }}</time>
-        
+        <!-- <el-link href="https://element.eleme.io" target="_blank">{{homeLatestNews[0].title}}</el-link>-->
+         <!-- <el-breadcrumb-item  >{{homeLatestNews[0].title}}</el-breadcrumb-item> -->
+         <el-link class='homeLatestNewsTitle' type="info" :underline="false" :to="{ path: '/index' }">{{homeLatestNews[0].title}}</el-link>
+        <!-- <span>{{homeLatestNews[0].title}}</span> -->
+        <div class="time , homeLatestNewsTime" >
+        {{ homeLatestNews[0].date }}
         </div>
       </div>
     </el-card>
   </el-col>
 </el-row>
+<!-- 第二行 -->
 <el-row class='latestNewsCard'>
   <el-col :span="5" push='4' class="latestNewsCard" v-for="(o, index) in 3" :key="o" :offset="index > 0 ? 2 : 0">
-    <el-card :body-style="{ padding: '0px' }" class="homeLatestNewsCard">
-      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+    <el-card shadow="hover" :body-style="{ padding: '0px' }" class="homeLatestNewsCard">
+      <router-link :to="{ path: '/index' }"><img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image"></router-link>
+      
       <div style="padding: 0px;">
-        <span>{{homeLatestNews[0].title}}</span>
-        <div class="bottom clearfix">
-          <time class="time">{{ homeLatestNews[0].date }}</time>
+        <!-- <el-link href="https://element.eleme.io" target="_blank">{{homeLatestNews[0].title}}</el-link>-->
+         <!-- <el-breadcrumb-item  >{{homeLatestNews[0].title}}</el-breadcrumb-item> -->
+         <el-link class='homeLatestNewsTitle' type="info" :underline="false" :to="{ path: '/index' }">{{homeLatestNews[0].title}}</el-link>
+        <!-- <span>{{homeLatestNews[0].title}}</span> -->
+        <div class="time , homeLatestNewsTime" >
+        {{ homeLatestNews[0].date }}
         </div>
       </div>
     </el-card>
   </el-col>
 </el-row>
+
   </el-main>
   
 
@@ -166,7 +175,23 @@ export default {
   padding: 0px;
   display: block;
   float: left;
-
+  border: none;
+}
+.homeLatestNewsTitle{
+  display: block;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 35px;
+  margin-bottom: 9px;
+  line-height: 1.4;
+}
+.homeLatestNewsTime{
+  font-size: 15px;
+  text-align: left;
+  padding-left: 32px;
+  line-height: 1.4;
+  letter-spacing: 0.1rem;
 }
 .clearfix:before,
   .clearfix:after {

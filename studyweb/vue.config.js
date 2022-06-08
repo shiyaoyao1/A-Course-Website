@@ -4,6 +4,12 @@ module.exports = {
       // 入口
       entry: 'src/main.js',
     },
+   /*  login: {
+      entry: 'src/page/index/main.js',
+      template: 'public/login.html',
+      filename: 'login.html',
+      title: 'login'
+  } */
   },
   lintOnSave:false, //关闭语法检查
   //开启代理服务器(方式一)

@@ -2,7 +2,7 @@
   <el-footer>
     <div>
     <el-row >
-      <el-col :span='24'>
+      <el-col :span='24' class='footerContent'>
         Footer内容
       </el-col>
     </el-row>
@@ -22,6 +22,7 @@ export default {
   padding-top: 6em;
   padding-bottom: 8em;
   background-color: rgb(185, 185, 185);
-  margin-top: 100px;
+  /* margin-top: 100px; */
+  height: 200px;
 }
 </style>

@@ -2,11 +2,15 @@
     
     <el-breadcrumb separator="">
   
-  <el-breadcrumb-item :to="{ path: '/index' }" class="bannerSelector">首页</el-breadcrumb-item>
-  <el-breadcrumb-item :to="{ path: '/index' }" class="bannerSelector">消息</el-breadcrumb-item>
-  <el-breadcrumb-item :to="{ path: '/index' }" class="bannerSelector">资料</el-breadcrumb-item>
-  <el-breadcrumb-item :to="{ path: '/index' }" class="bannerSelector">其他</el-breadcrumb-item>
+  <el-breadcrumb-item :to="{ path: '/index' }" class="bannerSelector">首页<span class="EditIcon"><i class="el-icon-s-home"></i></span></el-breadcrumb-item>
+  <el-breadcrumb-item :to="{ path: '/Message' }" class="bannerSelector">消息<span class="EditIcon"><i class="el-icon-chat-line-round"></i></span></el-breadcrumb-item>
+   <el-breadcrumb-item :to="{ path: '/index' }" class="bannerSelector">消息编辑<span class="EditIcon"><i class="el-icon-edit"></i></span></el-breadcrumb-item>
+  <el-breadcrumb-item :to="{ path: '/Article' }" class="bannerSelector">资料<span class="EditIcon"><i class="el-icon-tickets"></i></span></el-breadcrumb-item>
+   <el-breadcrumb-item :to="{ path: '/index' }" class="bannerSelector">资料编辑<span class="EditIcon"><i class="el-icon-edit-outline"></i></span></el-breadcrumb-item>
+  <el-breadcrumb-item :to="{ path: '/Login' }" class="bannerSelector">登录<span class="EditIcon"><i class="el-icon-user"></i></span></el-breadcrumb-item>
+   <!-- <el-breadcrumb-item :to="{ path: '/index' }" class="bannerSelector">学生信息编辑<span class="EditIcon"><i class="el-icon-edit"></i></span></el-breadcrumb-item> -->
   <el-breadcrumb-item :to="{ path: '/index' }" class="bannerSelector"></el-breadcrumb-item>
+   
 
   </el-breadcrumb>
     
@@ -45,6 +49,9 @@ export default {
 .bannerSelector{
   margin-right: 30px;
   /* margin-top: 20px; */
-  font-size: 15px;
+  font-size: 17px;
+}
+.EditIcon{
+  margin-left: 4px;
 }
 </style>
