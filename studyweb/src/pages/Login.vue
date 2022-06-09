@@ -19,7 +19,7 @@
                   <el-col>
                     <div class='loginFormBox'>
                   <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-  <el-form-item label="学号" prop="id" class='loginInputBox'>
+  <el-form-item label="账号" prop="id" class='loginInputBox'>
     <el-input type="text" v-model="ruleForm.pass" autocomplete="off" ></el-input>
   </el-form-item>
   <el-form-item label="密码" prop="pass" class='loginInputBox'>
@@ -28,7 +28,9 @@
   
   <el-form-item>
     <el-button type="primary" @click="submitForm('ruleForm')" class='loginSubmitBtn'>登录</el-button>
+    <el-button type="info" @click="submitForm('ruleForm')" class='loginSubmitBtn'>注册</el-button>
   </el-form-item>
+  
 </el-form>
                 </div>
                   </el-col>
@@ -116,8 +118,11 @@ export default {
 }
 .loginSubmitBtn{
   text-align: center;
-  margin-right: 92px;
+  /* margin-right: 92px;
   padding-left: 47px;
-  padding-right: 47px;
+  padding-right: 47px; */
+  /* padding-right: 40px; */
+  margin-right: 70px;
+  margin-top: 20px;
 }
 </style>

@@ -8,6 +8,8 @@ import Message from '../pages/Message.vue'
 import News from '../pages/News.vue'
 import Article from '../pages/Article.vue'
 import ArticleContent from '../pages/ArticleContent.vue'
+import Upload from '../pages/Upload.vue'
+import Download from '../pages/Download.vue'
 //创建并暴露一个路由器
 const router = new VueRouter({
     mode:'hash',
@@ -49,6 +51,18 @@ const router = new VueRouter({
                     } */
                 }
             ]
+        },
+        {
+            path:'/Upload',
+            name:'Upload',
+            component:Upload,
+            meta:{isAuth:true,title:'资料下载'}
+        },
+        {
+            path:'/Download',
+            name:'Download',
+            component:Download,
+            meta:{isAuth:true,title:'资料下载'}
         },
         {
             name:'Article',
