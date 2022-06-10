@@ -3,10 +3,13 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import pymysql
+from flask_cors import CORS
 # from timedelta import timedelta 
 pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
+
+CORS(app)
 
 class Config(object):
     """配置参数"""

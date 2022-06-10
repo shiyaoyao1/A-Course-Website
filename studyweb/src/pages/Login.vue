@@ -19,16 +19,16 @@
                   <el-col>
                     <div class='loginFormBox'>
                   <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-  <el-form-item label="账号" prop="id" class='loginInputBox'>
-    <el-input type="text" v-model="ruleForm.pass" autocomplete="off" ></el-input>
+  <el-form-item label="账号"  class='loginInputBox'>
+    <el-input type="text" v-model="submitForm.id" autocomplete="off" ></el-input>
   </el-form-item>
-  <el-form-item label="密码" prop="pass" class='loginInputBox'>
-    <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off" ></el-input>
+  <el-form-item label="密码"  class='loginInputBox'>
+    <el-input type="password" v-model="submitForm.password" autocomplete="off" ></el-input>
   </el-form-item>
   
   <el-form-item>
-    <el-button type="primary" @click="submitForm('ruleForm')" class='loginSubmitBtn'>登录</el-button>
-    <el-button type="info" @click="submitForm('ruleForm')" class='loginSubmitBtn'>注册</el-button>
+    <el-button type="primary"  class='loginSubmitBtn'>登录</el-button>
+    <el-button type="info" @click="submitRegister" class='loginSubmitBtn'>注册</el-button>
   </el-form-item>
   
 </el-form>
@@ -134,10 +134,11 @@ export default {
         }
       };
       return {
-        ruleForm: {
-          pass: '',
-          checkPass: '',
+        submitForm: {
+          id: '',
+          password: '',
         },
+        articles:'',
         form: {
           name: '',
           age: '',
@@ -162,16 +163,13 @@ export default {
       };
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
+      submitRegister(){
+        this.$store.dispatch('register',this.submitForm)
       },
+      demo(){
+        this.$store.dispatch('getArticle')
+        console.log(JSON.parse(this.articles))
+      }
     }
 }
 </script>
