@@ -59,16 +59,16 @@ def addArticle():
 
     return redirect(url_for('index'))
 
-@app.route('/syllabus')
+""" @app.route('/syllabus')
 def showSyllabus():   
     files = Files.query.all()
-    return render_template('syllabus.html',files = files)
+    return render_template('syllabus.html',files = files) """
 
 @app.route('/upload')
 def upload_file():
    return render_template('upload.html')
 
-@app.route('/uploader', methods = ['GET', 'POST'])
+""" @app.route('/uploader', methods = ['GET', 'POST'])
 def uploader():
    if request.method == 'POST':
         file_name = request.form['filename']   
@@ -78,7 +78,7 @@ def uploader():
         db.session.add(file)
         db.session.commit()
         db.session.close()
-        return redirect(url_for('upload_file'))
+        return redirect(url_for('upload_file')) """
 
 @app.route('/listarticles')
 def listArticles():
