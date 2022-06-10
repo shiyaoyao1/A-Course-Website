@@ -83,7 +83,17 @@ def uploader():
 @app.route('/listarticles')
 def listArticles():
     articles = Articles.query.all()
-    return render_template('listArticles.html',articles = articles)
+    articleList=[]
+    for article in articles:
+        articleTemp={}
+        articleTemp['id']=article.id
+        articleTemp['title']=article.title
+        articleTemp['time']=article.time
+        articleTemp['content']=article.content
+        articleList.append(articleTemp)
+    return jsonify(articleList)
+    # return render_template('listArticles.html',articles = articles)
+
 
 @app.route('/editarticle/<int:article_id>')
 def editArticle(article_id):
@@ -112,3 +122,5 @@ def deleteArticle(article_id):
 if __name__ == "__main__":
     # app.run(host='0.0.0.0',port=80)
     app.run(debug=True)
+    # articles = Articles.query.all()
+    # for article in articles:

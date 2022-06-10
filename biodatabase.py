@@ -58,7 +58,7 @@ class Articles(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     title = db.Column(db.String(64), unique=True)
     time = db.Column(db.String(64))
-    content = db.Column(db.String(1000))
+    content = db.Column(db.String(10000))
     # 定义字符集
     __table_args__ = {
     "mysql_charset" : "utf8"

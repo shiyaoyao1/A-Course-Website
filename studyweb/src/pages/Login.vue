@@ -28,7 +28,7 @@
   
   <el-form-item>
     <el-button type="primary"  class='loginSubmitBtn'>登录</el-button>
-    <el-button type="info" @click="submitRegister" class='loginSubmitBtn'>注册</el-button>
+    <el-button type="info" @click="demo" class='loginSubmitBtn'>注册</el-button>
   </el-form-item>
   
 </el-form>
@@ -164,13 +164,11 @@ export default {
     },
     methods: {
       submitRegister(){
-        this.$store.dispatch('register',this.submitForm)
+        // this.$store.dispatch('register',this.submitForm)
       },
-      demo(){
-        this.$store.dispatch('getArticle')
-        console.log(JSON.parse(this.articles))
-      }
-    }
+      
+    },
+    
 }
 </script>
 
