@@ -3,6 +3,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import pymysql
+# from timedelta import timedelta 
 pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
@@ -10,9 +11,9 @@ app = Flask(__name__)
 class Config(object):
     """配置参数"""
     # 设置连接数据库的URL
-    user = 'dbuser'
-    password = '123456'
-    database = 'flask'
+    user = 'root'
+    password = 'a123456'
+    database = 'studyWeb'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://%s:%s@127.0.0.1:3306/%s?charset=utf8' % (user,password,database)
 
     # 设置sqlalchemy自动更跟踪数据库
@@ -26,12 +27,26 @@ class Config(object):
     
     # 定义上传文件夹
     app.config['UPLOAD_FOLDER'] = 'upload/'
+    app.config['SECRET_KEY'] = '1145141919810'
+    # app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1) # 设置为1小时候过期
+
+
 
 # 读取配置
 app.config.from_object(Config)                             
 
 # 创建数据库sqlalchemy工具对象
 db = SQLAlchemy(app,use_native_unicode='utf8')
+
+class Users(db.Model):
+    __tablename__ = 'users'
+    name = db.Column(db.String(16), primary_key=True)
+    password = db.Column(db.String(64))
+    roleID =db.Column(db.Integer)
+    __table_args__ = {
+    "mysql_charset" : "utf8"
+    }
+    
 
 class Articles(db.Model):
     # 定义表名
@@ -46,24 +61,24 @@ class Articles(db.Model):
     "mysql_charset" : "utf8"
     }
 
-class Files(db.Model):
-    # 定义表名
-    __tablename__ = 'files'
-    # 定义字段
-    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    filename = db.Column(db.String(64), unique=True)
-    filepath = db.Column(db.String(64))
-    # 定义字符集
-    __table_args__ = {
-    "mysql_charset" : "utf8"
-    }   
+# class Files(db.Model):
+#     # 定义表名
+#     __tablename__ = 'files'
+#     # 定义字段
+#     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
+#     filename = db.Column(db.String(64), unique=True)
+#     filepath = db.Column(db.String(64))
+#     # 定义字符集
+#     __table_args__ = {
+#     "mysql_charset" : "utf8"
+#     }   
 
-class ArticleFiles(db.Model):
+# class ArticleFiles(db.Model):
 
-    __tablename__ = 'articlefiles'
+#     __tablename__ = 'articlefiles'
 
-    article_id = db.Column(db.Integer, db.ForeignKey('articles.id'),primary_key=True)
-    file_id = db.Column(db.Integer, db.ForeignKey('files.id'),primary_key=True)
+#     article_id = db.Column(db.Integer, db.ForeignKey('articles.id'),primary_key=True)
+#     file_id = db.Column(db.Integer, db.ForeignKey('files.id'),primary_key=True)
 
 
 if __name__ == '__main__':

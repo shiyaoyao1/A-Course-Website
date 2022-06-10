@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for,session,make_response,jsonify
+from flask import render_template,request,redirect,url_for,session,make_response,jsonify,flash
 from werkzeug.utils import secure_filename
 import os
 from biodatabase import *
@@ -7,6 +7,35 @@ from biodatabase import *
 def index():
     articles = Articles.query.order_by(Articles.id)[-2:]
     return render_template('index.html',articles = articles)
+
+@app.route('/Login', methods=['POST', 'GET'])
+def login():
+    if request.method=='GET':
+            name=request.args.get('name')
+            password = request.form.get("password")
+            user = Users.query.filter_by(name=name).first()
+
+    # if request.method == 'POST':
+    #     stuID = request.form.get("userID")
+    #     password = request.form.get("password")
+    #     user = Users.query.filter_by(stuID=stuID).first()
+    if user:
+        if password == user.password:
+
+            session[user.name] = {user.roleID:user.name}
+            if user.roleID == 1:
+                flash('管理员登录成功！')
+                userdata = {'role':user.roleID,'name':user.name}
+                return jsonify(userdata)
+            elif user.roleID == 2:
+                flash('用户登录成功！')
+                userdata = {'role':user.roleID,'name':user.name}
+                return jsonify(userdata)
+        else:
+            flash('密码错误')
+    else:
+        flash('账户不存在，请注册')
+    # return render_template('login.html')
 
 @app.route('/showaddarticle')
 def showAddArticle():

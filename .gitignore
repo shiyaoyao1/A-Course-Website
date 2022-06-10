@@ -1,0 +1,13 @@
+/__pycache__/
+/.360cache
+/报告
+/desktop.ini
+/test.py
+
+clustalWeb/
+dist/
+static/
+templates/
+upload/
+
+
