@@ -10,6 +10,7 @@ import Article from '../pages/Article.vue'
 import ArticleContent from '../pages/ArticleContent.vue'
 import Upload from '../pages/Upload.vue'
 import Download from '../pages/Download.vue'
+import ArticleEdit from '../pages/ArticleEdit.vue'
 //创建并暴露一个路由器
 const router = new VueRouter({
     mode:'hash',
@@ -71,7 +72,7 @@ const router = new VueRouter({
         },
         {
             name:'ArticleContent',
-            path:'ArticleContent',
+            path:'/ArticleContent',
             component:ArticleContent,
             //props第三种写法，值为函数 这里用了连续解构赋值
                     /* props({query}){
@@ -80,6 +81,12 @@ const router = new VueRouter({
                             title:query.title
                         }
                     } */
+        },
+        {
+            name:'ArticleEdit',
+            path:'/ArticleEdit',
+            component:ArticleEdit,
+            meta:{isAuth:true,title:'文章编辑'}
         }
 
     ]
@@ -88,10 +95,11 @@ const router = new VueRouter({
 //全局前置路由守卫 初始化以及每次路由切换前被调用
 router.beforeEach((to,from,next)=>{
     if(to.meta.isAuth === true){ //判断是否需要验证权限
-        if(localStorage.isAdmin === '1'){
+        if(sessionStorage.loginInfo && JSON.parse(sessionStorage.loginInfo).roleID == '1'){
             document.title = to.meta.title || '主页'
             next();
         }else{
+            console.log('无权限！')
             alert('无权限')
         }
     }else{

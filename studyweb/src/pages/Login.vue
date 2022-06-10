@@ -20,15 +20,15 @@
                     <div class='loginFormBox'>
                   <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
   <el-form-item label="账号"  class='loginInputBox'>
-    <el-input type="text" v-model="submitForm.id" autocomplete="off" ></el-input>
+    <el-input type="text" v-model="submitForm.name" autocomplete="off" ></el-input>
   </el-form-item>
   <el-form-item label="密码"  class='loginInputBox'>
     <el-input type="password" v-model="submitForm.password" autocomplete="off" ></el-input>
   </el-form-item>
   
   <el-form-item>
-    <el-button type="primary"  class='loginSubmitBtn'>登录</el-button>
-    <el-button type="info" @click="demo" class='loginSubmitBtn'>注册</el-button>
+    <el-button type="primary" @click='loginBtn' class='loginSubmitBtn'>登录</el-button>
+    <el-button type="info" @click="regestBtn" class='loginSubmitBtn'>注册</el-button>
   </el-form-item>
   
 </el-form>
@@ -135,7 +135,7 @@ export default {
       };
       return {
         submitForm: {
-          id: '',
+          name: '',
           password: '',
         },
         articles:'',
@@ -163,9 +163,41 @@ export default {
       };
     },
     methods: {
-      submitRegister(){
-        // this.$store.dispatch('register',this.submitForm)
+      loginBtn(){
+         this.$store.dispatch('submitRegister',this.submitForm).then(()=>{
+          if(this.$store.getters.loginInfo.name == null && this.$store.getters.loginInfo.roleID == null){
+            // console.log(this.$store.getters.loginInfo)
+              this.$notify.error({
+          title: '登陆失败',
+          message: '账号不存在！'
+        });
+          }else if(this.$store.getters.loginInfo.roleID == null){
+            // console.log(this.$store.getters.loginInfo)
+            this.$notify.error({
+          title: '登陆失败',
+          message: '密码错误！'
+        });
+          }else{
+            // console.log(this.$store.getters.loginInfo)
+             this.$notify({
+          title: '登录成功',
+          message: '登陆成功，即将跳转',
+          type: 'success'
+          
+        });
+        sessionStorage.loginInfo = JSON.stringify(this.$store.getters.loginInfo);
+        setTimeout(()=>{
+          this.$router.push({
+                name:'index',
+            })
+        },1000)
+          }
+         })
       },
+      regestBtn(){
+        console.log(this.$store.getters.loginInfo);
+        
+      }
       
     },
     

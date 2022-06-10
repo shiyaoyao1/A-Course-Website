@@ -2,6 +2,7 @@ from flask import render_template,request,redirect,url_for,session,make_response
 from werkzeug.utils import secure_filename
 import os
 from biodatabase import *
+import json 
 
 @app.route('/')
 def index():
@@ -10,10 +11,13 @@ def index():
 
 @app.route('/Login', methods=['POST', 'GET'])
 def login():
-    if request.method=='GET':
-            name=request.args.get('name')
-            password = request.form.get("password")
-            user = Users.query.filter_by(name=name).first()
+    # print('aaaaaaaaa',request.method)
+    if request.method=='POST':
+        data = json.loads(request.get_data(as_text=True))
+        # print('aaaaaaaaa',data)
+        name=data['name']
+        password = data['password']
+        user = Users.query.filter_by(name=name).first()
 
     # if request.method == 'POST':
     #     stuID = request.form.get("userID")
@@ -24,17 +28,21 @@ def login():
 
             session[user.name] = {user.roleID:user.name}
             if user.roleID == 1:
-                flash('管理员登录成功！')
-                userdata = {'role':user.roleID,'name':user.name}
+                # flash('管理员登录成功！')
+                userdata = {'roleID':user.roleID,'name':user.name}
                 return jsonify(userdata)
             elif user.roleID == 2:
-                flash('用户登录成功！')
-                userdata = {'role':user.roleID,'name':user.name}
+                # flash('用户登录成功！')
+                userdata = {'roleID':user.roleID,'name':user.name}
                 return jsonify(userdata)
         else:
-            flash('密码错误')
+            # flash('密码错误')
+            userdata = {'roleID':None,'name':user.name}
+            return jsonify(userdata)
     else:
-        flash('账户不存在，请注册')
+        # flash('账户不存在，请注册')
+        userdata = {'roleID':None,'name':None}
+        return jsonify(userdata)
     # return render_template('login.html')
 
 @app.route('/showaddarticle')
