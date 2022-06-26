@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for,session,make_response,jsonify,flash
+from flask import render_template,request,redirect,url_for,session,make_response,jsonify,flash,send_from_directory
 from werkzeug.utils import secure_filename
 import os
 from biodatabase import *
@@ -19,10 +19,6 @@ def login():
         password = data['password']
         user = Users.query.filter_by(name=name).first()
 
-    # if request.method == 'POST':
-    #     stuID = request.form.get("userID")
-    #     password = request.form.get("password")
-    #     user = Users.query.filter_by(stuID=stuID).first()
     if user:
         if password == user.password:
 
@@ -45,36 +41,65 @@ def login():
         return jsonify(userdata)
     # return render_template('login.html')
 
-@app.route('/showaddarticle')
-def showAddArticle():
-    return render_template('addArticle.html')
+# @app.route('/showaddarticle')
+# def showAddArticle():
+#     return render_template('addArticle.html')
 
-@app.route('/showarticle/<int:article_id>')
-def showArticle(article_id):
-    article = Articles.query.get(article_id)
-    return render_template('article.html',article = article)
+# @app.route('/showarticle/<int:article_id>')
+# def showArticle(article_id):
+#     article = Articles.query.get(article_id)
+#     return render_template('article.html',article = article)
 
-@app.route('/addarticle',methods = ['POST', 'GET'])
-def addArticle():
-    if request.method == 'POST':
-        # title = request.form['Title']
-        # time = request.form['Time']
-        # content = request.form['Content']
-        article = Articles(title = request.form['Title'],time = request.form['Time'],content = request.form['Content'])
-        db.session.add(article)
-        db.session.commit()
-        db.session.close()
+@app.route('/articleEdit',methods = ['POST', 'GET'])
+def articleEdit():
+    if request.method=='POST':
+        data = json.loads(request.get_data(as_text=True))
+        if data:
+            # print('aaaaaaaaa',data)
+            id=data['id']
+            title = data['title']
+            time =data['time']
+            content =data['content']
+            article = Articles.query.filter_by(id=id).first()
+        else:
+            return jsonify({False:'解析json失败。'})
 
-    return redirect(url_for('index'))
+        if id==None:
+            db.session.add(Articles(title=title,time=time,content=content))
+            db.session.commit()
+            db.session.close()
+            return jsonify({True:'存储成功。'})
+
+        elif content==None:
+            db.session.delete(article)
+            db.session.commit()
+            db.session.close()
+            return jsonify({True:'删除成功。'})
+
+        elif article.content==content:
+            db.session.update({article.content:content}, synchronize_session=True)
+            db.session.commit()
+            db.session.close()
+            return jsonify({True:'修改成功。'})
+    
 
 """ @app.route('/syllabus')
 def showSyllabus():   
     files = Files.query.all()
     return render_template('syllabus.html',files = files) """
 
-@app.route('/upload')
-def upload_file():
-   return render_template('upload.html')
+@app.route('/download')
+def downloadPage():
+    basepath = os.path.dirname(__file__)
+    filePath=os.path.join(basepath, "./files/")
+    for root, subdirs, files in os.walk(filePath):
+        return jsonify({'fileList':files})
+    
+@app.route('/download<fileName>')
+def downloadFile(fileName):
+    basepath = os.path.dirname(__file__)
+    filePath=os.path.join(basepath, "./files/")
+    return send_from_directory(filePath, fileName, as_attachment=True)
 
 """ @app.route('/uploader', methods = ['GET', 'POST'])
 def uploader():

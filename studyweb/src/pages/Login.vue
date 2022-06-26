@@ -163,6 +163,7 @@ export default {
       };
     },
     methods: {
+      //登录事件函数
       loginBtn(){
          this.$store.dispatch('submitRegister',this.submitForm).then(()=>{
           if(this.$store.getters.loginInfo.name == null && this.$store.getters.loginInfo.roleID == null){
@@ -190,7 +191,7 @@ export default {
           this.$router.push({
                 name:'index',
             })
-        },1000)
+        },4800)
           }
          })
       },

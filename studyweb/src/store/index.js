@@ -12,20 +12,19 @@ Vue.use(Vuex);
 
 //创建actions,用于响应组件中的动作 传入两个参数(context,value)
 const actions = {
+    //通过async和await将异步请求封装
     async submitRegister(context,user){
         const data = user;
+        //发送请求
         await axios({
             url:'http://127.0.0.1:5000/Login',
                 method:'POST',
-                data: data,  //这里json对象会转换成json格式字符串发送
+                data: data,  
                 headers:{
-                'Content-Type':'application/json'  //如果写成contentType会报错,如果不写这条也报错
-                //Content type 'application/x-www-form-urlencoded;charset=UTF-8'...
+                'Content-Type':'application/json' //表明为JSON格式
                 }
             }).then(res=>{
-                
-                context.commit('LOGINSUBMIT',res.data);
-                
+                context.commit('LOGINSUBMIT',res.data); //数据存储到Vuex的state中
             })
     
     },
@@ -34,11 +33,25 @@ const actions = {
             response=>{
                 // console.log(response.data); //成功收到数据
                 // this.$store.articleList=response.data;
-                console.log("action")
+                // console.log("action")
                 context.commit("GETARTICLELIST",response.data)
             },
             error=>{console.log('error了'+error)}
         )
+    },
+    updateArticle(context,item){
+        const data = item;
+        axios({
+            url:`http://127.0.0.1:5000/articleEdit`,
+                method:'POST',
+                data: data,  
+                headers:{
+                'Content-Type':'application/json' //表明为JSON格式
+                }
+            }).then(res=>{
+                    context.commit('UPDATEARTICLE',res.data);
+                
+            })
     }
 }
 
@@ -46,10 +59,13 @@ const actions = {
 const mutations = {
     GETARTICLELIST(state,data){
         state.articleList = data;
-        console.log('mutation')
+        // console.log('mutation')
     },
     LOGINSUBMIT(state,data){
         state.loginInfo=data;
+    },
+    UPDATEARTICLE(){
+        this.dispatch("getArticleList");
     }
 }
 
