@@ -25,7 +25,7 @@ export default {
     name:'BannerApp',
     data() {
       return {
-        loginInfo:sessionStorage.loginInfo,
+        loginInfo:this.$store.getters.loginInfo?this.$store.getters.loginInfo: undefined
       }
     },
     methods:{
@@ -45,8 +45,12 @@ export default {
     },
     computed:{
       loginState(){
-        if(this.loginInfo){
-          return true
+        if(this.$store.getters.loginInfo){
+          if(this.$store.getters.loginInfo.roleID == 1){
+            return true
+          }else{
+            return false
+          }
         }else{
           return false
         }
@@ -57,6 +61,7 @@ export default {
         this.loginState = true
       }
     }, */
+    
 }
 </script>
 

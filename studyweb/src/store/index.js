@@ -24,6 +24,7 @@ const actions = {
                 'Content-Type':'application/json' //表明为JSON格式
                 }
             }).then(res=>{
+                sessionStorage.setItem('loginInfo',JSON.stringify(res.data))
                 context.commit('LOGINSUBMIT',res.data); //数据存储到Vuex的state中
             })
     
@@ -34,6 +35,7 @@ const actions = {
                 // console.log(response.data); //成功收到数据
                 // this.$store.articleList=response.data;
                 // console.log("action")
+                sessionStorage.setItem('articleList', JSON.stringify(response.data))
                 context.commit("GETARTICLELIST",response.data)
             },
             error=>{console.log('error了'+error)}
@@ -71,8 +73,8 @@ const mutations = {
 
 //创建state,用于存储数据
 const state = {
-    
-    
+    articleList:JSON.parse(sessionStorage.getItem('articleList')) ? JSON.parse(sessionStorage.getItem('articleList')) : [],
+    loginInfo:JSON.parse(sessionStorage.getItem('loginInfo')) ? JSON.parse(sessionStorage.getItem('loginInfo')) : null,
 }
 
 //可选属性getters

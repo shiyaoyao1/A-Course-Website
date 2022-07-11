@@ -4,7 +4,7 @@
           <el-col :span='16' push='4'>
               <el-card class="box-card, articleList">
   <div slot="header" class="clearfix">
-    <span @click='getArticleList' class='aricleListTitleList'><span class='editIcon'><i class="el-icon-tickets"></i></span> 文章列表</span>
+    <span class='aricleListTitleList'><span class='editIcon'><i class="el-icon-tickets"></i></span> 文章列表</span>
     <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
   </div>
   <el-link   :underline="false"  class='articleListTitle' v-for='(item) in articleList' :key='item.id'>
@@ -28,7 +28,7 @@ export default {
     name:'ArticleApp',
     data() {
       return {
-        articleList:[],
+        
       }
     },
     methods: {
@@ -42,22 +42,27 @@ export default {
                 }
             })
         },
+        //获取文章列表
         getArticleList(){
               this.$store.dispatch("getArticleList");
-              setTimeout(()=>{
+
+              //可以通过异步方法使得请求返回后再写入data，但是通过vuex直接获取更安全方便，所以弃用该段代码
+              /* setTimeout(()=>{
                 this.articleList = this.$store.getters.articleList
-                sessionStorage.setItem('articleList', JSON.stringify(this.$store.getters.articleList))
-              },30)
+              },30) */
         }
         
         
     },
-    mounted() {
+    created() {
         this.getArticleList();
     },
-    updated() {
-        this.getArticleList();
-    },
+    computed:{
+        articleList(){
+            return this.$store.getters.articleList
+        }
+    }
+    
    
     
     

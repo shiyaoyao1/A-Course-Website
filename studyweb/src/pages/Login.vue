@@ -191,7 +191,7 @@ export default {
           this.$router.push({
                 name:'index',
             })
-        },4800)
+        },1500)
           }
          })
       },
