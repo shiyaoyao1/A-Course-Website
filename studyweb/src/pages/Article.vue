@@ -45,7 +45,6 @@ export default {
         //获取文章列表
         getArticleList(){
               this.$store.dispatch("getArticleList");
-
               //可以通过异步方法使得请求返回后再写入data，但是通过vuex直接获取更安全方便，所以弃用该段代码
               /* setTimeout(()=>{
                 this.articleList = this.$store.getters.articleList
@@ -55,7 +54,10 @@ export default {
         
     },
     created() {
-        this.getArticleList();
+        if(!sessionStorage.getItem('articleList')){
+            this.getArticleList();
+        }
+        
     },
     computed:{
         articleList(){
