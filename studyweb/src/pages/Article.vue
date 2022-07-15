@@ -57,11 +57,10 @@ export default {
         if(!sessionStorage.getItem('articleList')){
             this.getArticleList();
         }
-        
     },
     computed:{
         articleList(){
-            return this.$store.getters.articleList
+            return this.$store.getters.articleList;
         }
     }
     
