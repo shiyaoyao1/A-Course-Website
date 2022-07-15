@@ -49,8 +49,8 @@ export default {
         getArticleList(){
               this.$store.dispatch("getArticleList");
               setTimeout(()=>{
-                this.articleList = this.$store.getters.articleList
-                sessionStorage.setItem('articleList', JSON.stringify(this.$store.getters.articleList))
+                this.articleList = this.$store.getters.articleList;
+                sessionStorage.setItem('articleList', JSON.stringify(this.$store.getters.articleList));
               },30)
         },
         deleteArticleBtn(item){
