@@ -13,34 +13,45 @@ Vue.use(Vuex);
 //创建actions,用于响应组件中的动作 传入两个参数(context,value)
 const actions = {
     //通过async和await将异步请求封装
+
+    //登陆注册请求
     async submitRegister(context,user){
         const data = user;
         //发送请求
-        await axios({
+        try {let res = await axios({
             url:'http://127.0.0.1:5000/Login',
                 method:'POST',
                 data: data,  
                 headers:{
                 'Content-Type':'application/json' //表明为JSON格式
                 }
-            }).then(res=>{
-                sessionStorage.setItem('loginInfo',JSON.stringify(res.data))
-                context.commit('LOGINSUBMIT',res.data); //数据存储到Vuex的state中
-            })
+            });
+            sessionStorage.setItem('loginInfo',JSON.stringify(res.data))
+            context.commit('LOGINSUBMIT',res.data); //数据存储到Vuex的state中
+            } catch(err){
+                console.log(err)
+            }
     
     },
-    getArticleList(context){
-        axios.get(`http://127.0.0.1:5000/listarticles`).then(
-            response=>{
-                // console.log(response.data); //成功收到数据
-                // this.$store.articleList=response.data;
-                // console.log("action")
-                sessionStorage.setItem('articleList', JSON.stringify(response.data))
-                context.commit("GETARTICLELIST",response.data)
-            },
-            error=>{console.log('error了'+error)}
-        )
+
+    //获取文章列表
+    async getArticleList(context){
+        try{let response = await axios({
+            url:"http://127.0.0.1:5000/listarticles",
+            method:'GET',
+        });
+            // console.log(response.data); //成功收到数据
+            // this.$store.articleList=response.data;
+            // console.log("action")
+            sessionStorage.setItem('articleList', JSON.stringify(response.data))
+            context.commit("GETARTICLELIST",response.data)
+        }catch(err){
+            console.log(err);
+        }
+        
     },
+
+    //更新文章信息
     updateArticle(context,item){
         const data = item;
         axios({

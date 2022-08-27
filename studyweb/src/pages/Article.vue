@@ -53,9 +53,9 @@ export default {
         
         
     },
-    created() {
+    async created() {
         if(!sessionStorage.getItem('articleList')){
-            this.getArticleList();
+            await this.getArticleList();
         }
     },
     computed:{
